@@ -1,3 +1,9 @@
+---
+title: WakeOnLan_Python
+date: 2021-04-17 05:15:05
+---
+
+
 # Write a network line feed tool in Python
 
 ## preview
@@ -11,9 +17,17 @@
 ## attention
 
 ```bash
+chmod 777 wol
+cp wol /usr/bin/wol
+wol
+```
+
+
+
+```bash
     dest_ip = "1.1.1.1/abc.com"
     mac = "ab:cd:ef:gh"
     dest_port = 9
 ```
 
-> 转载请声明
+> 转载请声明来源：[Blog](https://blog.zygd.site/WakeOnLan_Python.html) [Github](https://github.com/zygds/WakeOnLan_Python)
