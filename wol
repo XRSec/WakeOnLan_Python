@@ -1,0 +1,32 @@
+#!/opt/homebrew/bin/python3
+# _*_ coding: utf-8 _*_
+# author < xrsec : troy@zygd.site >
+
+import socket, binascii, os
+
+
+def banaer():
+    os.system("clear")
+    print("\n\033[24;37;34m __  __  ____                      \033[0m")
+    print("\033[24;37;32m \ \/ / |  _ \   ___    ___    ___ \033[0m")
+    print("\033[24;37;36m  \ \/  | |_) | / __|  / _ \  / __| \033[0m")
+    print("\033[24;37;31m  /  \  |  _ <  \__ \ |  __/ | (__ \033[0m")
+    print("\033[24;37;35m /_/\_\ |_| \_\ |___/  \___|  \___| \n\033[0m")
+    print("\033[24;37;32m Edit wol ! \n\033[0m")
+
+
+def send_msg():
+    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    dest_ip = "Domain name address / IP Domain"
+    mac = "Mac address"
+    dest_port = port
+    send_data = binascii.unhexlify('FF' * 6 + mac * 16)
+    udp_socket.sendto(send_data, (dest_ip, dest_port))
+    print("\033[24;37;35m Python Go Successful! \033[0m")
+    print("\033[24;37;34m")
+    # os.system("curl -d 'user=zygds&pwd=Ke45x8YmAY2SSm' -X POST https://wol.qwq.plus/main/api.php")
+    print("\n")
+
+if __name__ == "__main__":
+    banaer()
+    send_msg()
