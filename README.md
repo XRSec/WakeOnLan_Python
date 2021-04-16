@@ -1,9 +1,3 @@
----
-title: WakeOnLan_Python
-date: 2021-04-17 05:15:05
----
-
-
 # Write a network line feed tool in Python
 
 ## preview
