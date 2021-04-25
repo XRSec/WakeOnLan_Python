@@ -1,8 +1,8 @@
-#!/opt/homebrew/bin/python3
+#!/usr/bin/python3
 # _*_ coding: utf-8 _*_
 # author < xrsec : troy@zygd.site >
 
-import socket, binascii, os
+import socket, binascii, os, sys, requests 
 
 
 def banaer():
@@ -15,18 +15,35 @@ def banaer():
     print("\033[24;37;32m Edit wol ! \n\033[0m")
 
 
+def ip_init():
+    if len(sys.argv) == 2:
+        destip = sys.argv[1]
+    elif len(sys.argv) == 1:
+        domain = "Domain name address / IP Domain"
+        web_status = requests.get("https://myssl.com/api/v1/tools/dns_query?qtype=1&host=%s&qmode=1"%domain, timeout=5)
+        try:
+            destip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
+        except:
+            if (web_status.json()["data"])["86"][0]["answer"]["records"] == "null":
+                destip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
+    else:
+        print("Domain error")
+    return destip
+
+
 def send_msg():
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    dest_ip = "Domain name address / IP Domain"
     mac = "Mac address"
-    dest_port = port
+    dest_port = 9998
     send_data = binascii.unhexlify('FF' * 6 + mac * 16)
-    udp_socket.sendto(send_data, (dest_ip, dest_port))
-    print("\033[24;37;35m Python Go Successful! \033[0m")
+    udp_socket.sendto(send_data, (ip_init(), dest_port))
+    udp_socket.sendto(send_data, ("NAT IP", dest_port))
+    print("\033[24;37;35m Python Wol " + ip_init() + " Successful! \033[0m")
     print("\033[24;37;34m")
-    # os.system("curl -d 'user=zygds&pwd=Ke45x8YmAY2SSm' -X POST https://wol.qwq.plus/main/api.php")
-    print("\n")
+
 
 if __name__ == "__main__":
     banaer()
+    ip_init()
     send_msg()
+
