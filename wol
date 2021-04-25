@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 # _*_ coding: utf-8 _*_
-# author < xrsec : troy@zygd.site >
 
-import socket, binascii, os, sys, requests 
+import socket, binascii, os, sys, requests, re
 
 
 def banaer():
@@ -12,38 +11,61 @@ def banaer():
     print("\033[24;37;36m  \ \/  | |_) | / __|  / _ \  / __| \033[0m")
     print("\033[24;37;31m  /  \  |  _ <  \__ \ |  __/ | (__ \033[0m")
     print("\033[24;37;35m /_/\_\ |_| \_\ |___/  \___|  \___| \n\033[0m")
-    print("\033[24;37;32m Edit wol ! \n\033[0m")
+    print("\033[24;37;35m [ Help ] \n\033[0m")
+    print("\033[24;37;31m wol / wol 1.1.1.1 / wol google.com \033[0m")
+    print("\033[24;37;32m Edit wol「 DestIp DestPort DestMacAddress 」 \n\033[0m")
 
 
-def ip_init():
-    if len(sys.argv) == 2:
-        destip = sys.argv[1]
-    elif len(sys.argv) == 1:
-        domain = "Domain name address / IP Domain"
-        web_status = requests.get("https://myssl.com/api/v1/tools/dns_query?qtype=1&host=%s&qmode=1"%domain, timeout=5)
+def DpmainToIp(dest_ip):
+    web_status = requests.get("https://myssl.com/api/v1/tools/dns_query?qtype=1&host=%s&qmode=1" % dest_ip, timeout=5)
+    try:
+        dest_ip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
+    except:
         try:
-            destip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
-        except:
             if (web_status.json()["data"])["86"][0]["answer"]["records"] == "null":
-                destip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
+                dest_ip = (web_status.json()["data"])["86"][0]["answer"]["records"][0]["value"]
+        except:
+            print("\033[24;37;31m Error : DpmainToIp > except > except \n\033[0m")
+            exit()
+    send_msg(dest_ip)
+
+
+def IpOrDomain(dest_ip):
+    check_ip = re.compile(
+        '^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|['
+        '1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$')
+    if check_ip.match(dest_ip):
+        send_msg(dest_ip)
+    else:
+        DpmainToIp(dest_ip)
+
+
+def ip_init(dest_ip):
+    if len(sys.argv) == 2:
+        dest_ip = sys.argv[1]
+        IpOrDomain(dest_ip)
+    elif len(sys.argv) == 1:
+        IpOrDomain(dest_ip)
     else:
         print("Domain error")
-    return destip
 
 
-def send_msg():
+def send_msg(DestIp):
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    mac = "Mac address"
-    dest_port = 9998
-    send_data = binascii.unhexlify('FF' * 6 + mac * 16)
-    udp_socket.sendto(send_data, (ip_init(), dest_port))
-    udp_socket.sendto(send_data, ("NAT IP", dest_port))
-    print("\033[24;37;35m Python Wol " + ip_init() + " Successful! \033[0m")
+    send_data = binascii.unhexlify('FF' * 6 + DestMacAddress * 16)
+    udp_socket.sendto(send_data, (DestIp, DestPort))
+    udp_socket.sendto(send_data, (DestNatIp, DestPort))
+    print("\033[24;37;35m Python Wol " + DestIp + " Successful! \033[0m")
     print("\033[24;37;34m")
 
 
 if __name__ == "__main__":
+    # TODO
+    DestIp = "localhost"
+    DestNatIp = "127.0.0.1"
+    DestMacAddress = "B43E98F386A4"
+    DestPort = 9
+
     banaer()
-    ip_init()
-    send_msg()
+    ip_init(DestIp)
 
