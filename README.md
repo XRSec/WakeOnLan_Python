@@ -1,11 +1,11 @@
-# Write a network line feed tool in Python
+## Write a network line feed tool in Python
 
-## preview
+## Preview
 
-![image-20210425235954481](https://rmt.ladydaily.com/fetch/ZYGG/storage/20210425235956573396.png?w=1280&fmt=png)
-![image-20210426014122257](https://rmt.ladydaily.com/fetch/ZYGG/storage/20210417050652008075.png?w=1280&fmt=jpeg)
+![image-20210425235954481](https://dogefs.s3.ladydaily.com/ZYGG/storage/20210425235956573396.png?w=1280&fmt=png)
+![image-20210426014122257](https://dogefs.s3.ladydaily.com/ZYGG/storage/20210417050652008075.png?w=1280&fmt=jpeg)
 
-## attention
+## Attention
 
 ```bash
 chmod 777 wol
