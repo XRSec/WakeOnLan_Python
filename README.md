@@ -99,4 +99,4 @@ if __name__ == "__main__":
 
 
 
-> 转载请声明来源：[Blog](https://blog.zygd.site/WakeOnLan_Python.html) [Github](https://github.com/zygds/WakeOnLan_Python)
+> 转载请声明来源：[Blog](https://xrsec.vercel.app/WakeOnLan_Python.html) [Github](https://github.com/zygds/WakeOnLan_Python)
