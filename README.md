@@ -2,8 +2,8 @@
 
 ## Preview
 
-![image-20210425235954481](https://dogefs.s3.ladydaily.com/ZYGG/storage/20210425235956573396.png?w=1280&fmt=png)
-![image-20210426014122257](https://dogefs.s3.ladydaily.com/ZYGG/storage/20210417050652008075.png?w=1280&fmt=jpeg)
+![image-20210425235954481](https://xrsec.s3.bitiful.net/IMG/20210425235956573396.png?w=1280&fmt=png)
+![image-20210426014122257](https://xrsec.s3.bitiful.net/IMG/20210417050652008075.png?w=1280&fmt=jpeg)
 
 ## Attention
 
